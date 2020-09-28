@@ -8,7 +8,7 @@ namespace SROBOT.Modules
 {
 	public class Commands : ModuleBase<SocketCommandContext>
 	{
-		[Command("Sa")]
+		[Command("sa")]
 		public async Task Selam()
 		{
 			await ReplyAsync("As");

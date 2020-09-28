@@ -16,7 +16,7 @@ namespace SROBOT
 		private DiscordSocketClient client;
 		private CommandService commands;
 		private IServiceProvider services;
-		const string token = "NzYwMDg2NTU1Njc0MTQ4ODc2.X3G7xA.emBgwfSN_qs2tQJrK7J3ry3NPHQ";
+		const string token = "NzYwMDg2NTU1Njc0MTQ4ODc2.X3G7xA.KHJNo1-E9UP2_DE3_W-SnS8Mx1g";
 		const string prefix = "!";
 
 		static void Main(string[] args) => new Program().RunBotAsync().GetAwaiter().GetResult();
