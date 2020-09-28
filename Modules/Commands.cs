@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Discord.Commands;
 using System.Threading.Tasks;
-using Discord.Commands;
 
 namespace SROBOT.Modules
 {
@@ -12,6 +9,12 @@ namespace SROBOT.Modules
 		public async Task Selam()
 		{
 			await ReplyAsync("As");
+		}
+
+		[Command("ömer")]
+		public async Task Omer()
+		{
+			await ReplyAsync("Piçömer81");
 		}
 	}
 }

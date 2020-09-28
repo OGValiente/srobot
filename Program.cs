@@ -1,13 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
-using Discord;
+﻿using Discord;
 using Discord.Commands;
 using Discord.WebSocket;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using SROBOT.Modules;
+using System;
+using System.IO;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace SROBOT
 {
@@ -16,13 +17,19 @@ namespace SROBOT
 		private DiscordSocketClient client;
 		private CommandService commands;
 		private IServiceProvider services;
-		const string token = "NzYwMDg2NTU1Njc0MTQ4ODc2.X3G7xA.KHJNo1-E9UP2_DE3_W-SnS8Mx1g";
-		const string prefix = "!";
+		private ConfigJson configJson;
 
 		static void Main(string[] args) => new Program().RunBotAsync().GetAwaiter().GetResult();
 
 		public async Task RunBotAsync()
 		{
+			var json = string.Empty;
+			using (var fs = File.OpenRead("config.json"))
+			using (var sr = new StreamReader(fs, new UTF8Encoding(false)))
+				json = await sr.ReadToEndAsync().ConfigureAwait(false);
+
+			configJson = JsonConvert.DeserializeObject<ConfigJson>(json);
+			
 			client = new DiscordSocketClient();
 			commands = new CommandService();
 			services = new ServiceCollection()
@@ -34,7 +41,7 @@ namespace SROBOT
 
 			await RegisterCommandsAsync();
 
-			await client.LoginAsync(TokenType.Bot, token);
+			await client.LoginAsync(TokenType.Bot, configJson.Token);
 
 			await client.StartAsync();
 
@@ -64,7 +71,7 @@ namespace SROBOT
 			}
 
 			int argPos = 0;
-			if (message.HasStringPrefix(prefix, ref argPos))
+			if (message.HasStringPrefix(configJson.Prefix, ref argPos))
 			{
 				var result = await commands.ExecuteAsync(context, argPos, services);
 				if (!result.IsSuccess)
