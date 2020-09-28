@@ -37,7 +37,7 @@ namespace SROBOT.Modules
 				.WithFooter(footer =>
 				{
 					footer
-					.WithText($"Gram altın kuru: " + altinJson.GramAltin)
+					.WithText($"Gram altın kuru\nAlış: {altinJson.GramAltın.Alış}\nSatış: {altinJson.GramAltın.Satış}")
 					.WithIconUrl("https://www.boyakazan.com/image/cache/catalog/%C3%87E%C4%9EREK%20ALTIN-550x550h.png");
 				});
 			Embed embed = EmbedBuilder.Build();

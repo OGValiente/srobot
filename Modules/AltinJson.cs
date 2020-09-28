@@ -2,15 +2,39 @@
 
 namespace SROBOT.Modules
 {
-	public struct AltinJson
-	{
-		[JsonProperty("EURO")]
-		public string Euro { get; private set; }
-		[JsonProperty("ABD DOLARI")]
-		public string Dolar { get; private set; }
-		[JsonProperty("Ons Alt\u0131n")]
-		public string Ons { get; private set; }
-		[JsonProperty("Gram Alt\u0131n")]
-		public string GramAltin { get; private set; }
-	}
+    public class ABDDOLARI
+    {
+        public string Alış { get; set; }
+        public string Satış { get; set; }
+        public string Tür { get; set; }
+    }
+
+    public class EURO
+    {
+        public string Alış { get; set; }
+        public string Satış { get; set; }
+        public string Tür { get; set; }
+    }
+
+    public class OnsAltın
+    {
+        public string Alış { get; set; }
+        public string Satış { get; set; }
+        public string Tür { get; set; }
+    }
+
+    public class GramAltın
+    {
+        public string Alış { get; set; }
+        public string Satış { get; set; }
+        public string Tür { get; set; }
+    }
+
+    public class AltinJson
+    {
+        public ABDDOLARI ABDDOLARI { get; set; }
+        public EURO EURO { get; set; }
+        public OnsAltın OnsAltın { get; set; }
+        public GramAltın GramAltın { get; set; }
+    }
 }
