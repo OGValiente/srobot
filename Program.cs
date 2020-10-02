@@ -6,7 +6,10 @@ using Microsoft.VisualBasic;
 using Newtonsoft.Json;
 using SROBOT.Modules;
 using System;
+using System.Diagnostics;
 using System.IO;
+using System.Linq.Expressions;
+using System.Net;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,7 +33,14 @@ namespace SROBOT
 				json = await sr.ReadToEndAsync().ConfigureAwait(false);
 
 			configJson = JsonConvert.DeserializeObject<ConfigJson>(json);
-			
+
+			using (var webClient = new WebClient())
+			{
+				var todayJson = webClient.DownloadString("https://finans.truncgil.com/today.json");
+				var convertedJson = JsonConvert.DeserializeObject<DovizJson>(todayJson);
+				DovizData.DovizJson = convertedJson;
+			}
+
 			client = new DiscordSocketClient();
 			commands = new CommandService();
 			services = new ServiceCollection()

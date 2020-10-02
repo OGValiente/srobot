@@ -1,40 +1,47 @@
-﻿using Newtonsoft.Json;
-
-namespace SROBOT.Modules
+﻿namespace SROBOT.Modules
 {
-    public class ABDDOLARI
+    using System;
+    using Newtonsoft.Json;
+
+    public partial class DovizJson
     {
-        public string Alış { get; set; }
-        public string Satış { get; set; }
-        public string Tür { get; set; }
+        [JsonProperty("Güncelleme Tarihi")]
+        public DateTimeOffset GüncellemeTarihi { get; set; }
+
+        [JsonProperty("ABD DOLARI")]
+        public Kur AbdDolari { get; set; }
+
+        [JsonProperty("EURO")]
+        public Kur Euro { get; set; }
+
+        [JsonProperty("Ons Altın")]
+        public Kur OnsAltın { get; set; }
+
+        [JsonProperty("Gram Altın")]
+        public Kur GramAltın { get; set; }
+
+        [JsonProperty("Çeyrek Altın")]
+        public Kur ÇeyrekAltın { get; set; }
+
+        [JsonProperty("Yarım Altın")]
+        public Kur YarımAltın { get; set; }
+
+        [JsonProperty("Tam Altın")]
+        public Kur TamAltın { get; set; }
+
+        [JsonProperty("Gümüş")]
+        public Kur Gümüş { get; set; }
     }
 
-    public class EURO
+    public partial class Kur
     {
+        [JsonProperty("Alış")]
         public string Alış { get; set; }
-        public string Satış { get; set; }
-        public string Tür { get; set; }
-    }
 
-    public class OnsAltın
-    {
-        public string Alış { get; set; }
+        [JsonProperty("Satış")]
         public string Satış { get; set; }
-        public string Tür { get; set; }
-    }
 
-    public class GramAltın
-    {
-        public string Alış { get; set; }
-        public string Satış { get; set; }
+        [JsonProperty("Tür")]
         public string Tür { get; set; }
-    }
-
-    public class AltinJson
-    {
-        public ABDDOLARI ABDDOLARI { get; set; }
-        public EURO EURO { get; set; }
-        public OnsAltın OnsAltın { get; set; }
-        public GramAltın GramAltın { get; set; }
     }
 }
